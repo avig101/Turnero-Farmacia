@@ -14,14 +14,14 @@ header{
 } 
 
 /* Configuracion de la tabla */
-#tabla{
+#calendario{
     outline: 0.5em #0d389483 solid ;
-    table-layout:auto;
+    table-layout:fixed;
     border-collapse:collapse;
     width: 100%;
     background-color: rgba(0,0,0,0 );
     background-image: url("Isologofarmacia.png");
-    background-size: 100% 100%;
+    background-size: 80% 100%;
     background-repeat: no-repeat;
     background-position: center center;
 }
@@ -29,49 +29,55 @@ tbody tr:nth-child(odd){
     background-color: rgba(112, 112, 114, 0.329);
 }
 /*Config de las celdas*/
-#turnos_txt{
-    padding: 10px 15px;
-    text-align: right;
+.topCalendar{
     font-size: 1.5em;
+}
+#turnostxt{
+    padding: 0.1em 0.4em;
+    text-align: right;
 }
 #año{
-    padding: 10px 15px;
+    padding: 0.1em 0.4em;
     transition: all 0.3s ease-in-out ;
     text-align: left;
-    font-size: 1.5em;
-
 }
 #mes{
-    padding: 10px 15px;
+    padding: 0.1em 0.4em;
     transition: all 0.3s ease-in-out ;
-    font-size: 1.5em;
 }
 .dia{
-    padding: 30px 6px;
-    outline: 0.1em #0D3894 solid;
+    padding: 0.5em 0.4em;
+    outline: 0.065em rgba(13, 56, 148, 0.616) solid;
     text-align: center;
-    text-size-adjust: 100%;
-    font-size: 1.25;
+    font-size: 1.4em;
 }
 .lista_dia{
     margin: 0em 0em;
-    outline: 0.1em #0D3894 solid;
+    outline: 0.1em rgba(13, 56, 148, 0.616) solid;
     list-style-type: none;
-    padding: 30px 30px;
-    text-size-adjust: 1em;
+    padding: 1em;
     transition: all 0.3s ease-in-out ;
 }
-.numero{
+.numeros{
+    padding-bottom: 1em;
     text-align: start;
-    font-size: 1em;
+    font-size: 0.8em;
 }
-.dato{
+.nombres{
     text-align: center;
-    font-size: 1em;
+    font-size: 1.2em;
+}
+.datos{
+    text-align: center;
+    font-size: 0.8em;
+}
+.empty{
+    text-align: center;
+    font-size: 0.89999em;
 }
 
 /* Animacion */
-#mes:hover,#año:hover ,.lista_dia:hover{
+.select:hover{
     background-color:rgba(13, 56, 148, 0.219);
     box-shadow: 0.5em 0.5em 0.3em rgba(13, 56, 148, 0.651); ;
     cursor:pointer;
