@@ -47,25 +47,29 @@ tbody tr:nth-child(odd){
 }
 .dia{
     padding: 0.5em 0.4em;
-    outline: 0.1em #0D3894 solid;
+    outline: 0.065em rgba(13, 56, 148, 0.616) solid;
     text-align: center;
-    font-size: 1.25em;
+    font-size: 1.4em;
 }
 .lista_dia{
     margin: 0em 0em;
-    outline: 0.1em #0D3894 solid;
+    outline: 0.1em rgba(13, 56, 148, 0.616) solid;
     list-style-type: none;
-    padding: 30px 30px;
-    text-size-adjust: 1em;
+    padding: 1em;
     transition: all 0.3s ease-in-out ;
 }
-.numero{
+.numeros{
+    padding-bottom: 1emS;
     text-align: start;
-    font-size: 1em;
+    font-size: 0.8em;
 }
-.dato{
+.nombres{
     text-align: center;
-    font-size: 1em;
+    font-size: 1.2em;
+}
+.datos{
+    text-align: center;
+    font-size: 0.8em;
 }
 
 /* Animacion */

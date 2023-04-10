@@ -5,15 +5,10 @@ let deTurno = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
-let numberOfWeeks = 3;
+let numberOfWeeks = 6;
 
-let week = [document.getElementById("week1"),document.getElementById("week2"),document.getElementById("week3")];
-let week1 = document.getElementById("week1"); // ADonde escribimos los dias
-let week2 = document.getElementById("week2")
-let week3 = document.getElementById("week3")
-let week4 = document.getElementById("week4")
-let week5 = document.getElementById("week5")
-let week6 = document.getElementById("week6")
+let week = [document.getElementById("week1"),document.getElementById("week2"),document.getElementById("week3"),document.getElementById("week4"),document.getElementById("week5"),document.getElementById("week6")];
+
 let mes = document.getElementById("mes");
 let año = document.getElementById("año");
 
@@ -23,6 +18,7 @@ setYear(currentYear);
 setMonth(currentMonth);
 
 makeTurnero();
+
 
 
 
@@ -60,14 +56,28 @@ function changeMonth(){
     if(currentMonth !== 11){
         setMonth(currentMonth+1)
     }else setMonth(0);
-
-    console.log("Anda piolita");
+    makeTurnero();
 }
 function makeTurnero(){
     let daytowrite = startDay();
+    let dia = 1;
     for(let i=0;i<numberOfWeeks;i++){
-        for(let j =0;j<7;j++){
-            week[i].innerHTML += '<td>HOLA</td>';
+        week[i].innerHTML = ` `;
+        for(let j= 0;j<7;j++){
+            if((i===0 && j<daytowrite) || (dia>numbDays())){
+                week[i].innerHTML += `<td></td>`;
+            }else{
+                week[i].innerHTML += `<td>
+                                        <ul id = "dia${dia}" class = "lista_dia select">
+                                            <li class = "numeros azul">${dia}</li>
+                                            <li class = "nombres verde">farm</li>
+                                            <li class = "datos azul" >direc</li>
+                                            <li class = "datos azul" >tel</li>
+                                        </ul>
+                                    </td>`;
+                dia++;
+            }
         }
     }
 }
+
