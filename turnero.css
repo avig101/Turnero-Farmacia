@@ -59,7 +59,7 @@ tbody tr:nth-child(odd){
     transition: all 0.3s ease-in-out ;
 }
 .numeros{
-    padding-bottom: 1emS;
+    padding-bottom: 1em;
     text-align: start;
     font-size: 0.8em;
 }
@@ -70,6 +70,10 @@ tbody tr:nth-child(odd){
 .datos{
     text-align: center;
     font-size: 0.8em;
+}
+.empty{
+    text-align: center;
+    font-size: 0.89999em;
 }
 
 /* Animacion */

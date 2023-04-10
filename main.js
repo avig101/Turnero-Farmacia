@@ -1,16 +1,18 @@
 const meses = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
-const farmacias = [["Ingrese","una","farmacia"]["PUSSETTO","Belgrano 402","421004"],["MOLINA","Zeballos 303", 452357]];
-let deTurno = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+const farmacias = [["PUSSETTO","Belgrano 402",421004],["MOLINA","Zeballos 303",452357]];
+let deTurno = [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
 let numberOfWeeks = 6;
+let numFarmacias = 2
 
 let week = [document.getElementById("week1"),document.getElementById("week2"),document.getElementById("week3"),document.getElementById("week4"),document.getElementById("week5"),document.getElementById("week6")];
 
 let mes = document.getElementById("mes");
 let año = document.getElementById("año");
+let dias = [];
 
 mes.addEventListener('click',()=>changeMonth());
 
@@ -18,6 +20,7 @@ setYear(currentYear);
 setMonth(currentMonth);
 
 makeTurnero();
+makeFunctional();
 
 
 
@@ -58,6 +61,16 @@ function changeMonth(){
     }else setMonth(0);
     makeTurnero();
 }
+
+function changeTurno(dia){
+    if(deTurno[dia] === (numFarmacias)){
+        deTurno[dia] = 0;
+    }else {
+        deTurno[dia]++;
+    }
+    
+    makeTurnero();
+}
 function makeTurnero(){
     let daytowrite = startDay();
     let dia = 1;
@@ -67,17 +80,36 @@ function makeTurnero(){
             if((i===0 && j<daytowrite) || (dia>numbDays())){
                 week[i].innerHTML += `<td></td>`;
             }else{
-                week[i].innerHTML += `<td>
-                                        <ul id = "dia${dia}" class = "lista_dia select">
-                                            <li class = "numeros azul">${dia}</li>
-                                            <li class = "nombres verde">farm</li>
-                                            <li class = "datos azul" >direc</li>
-                                            <li class = "datos azul" >tel</li>
-                                        </ul>
-                                    </td>`;
+                if(deTurno[dia]===0){
+                    week[i].innerHTML += `<td>
+                                            <ul id = "dia${dia}" class = "lista_dia select">
+                                                <li class = "numeros azul">${dia}</li>
+                                                <li class = "empty azul" >Seleccione</li>
+                                                <li class = "empty azul" >una</li>
+                                                <li class = "empty azul" >farmacia</li>
+                                            </ul>
+                                        </td>`;
+                }else{
+                    week[i].innerHTML += `<td>
+                                            <ul id = "dia${dia}" class = "lista_dia select">
+                                                <li class = "numeros azul">${dia}</li>
+                                                <li class = "nombres verde">${farmacias[deTurno[dia]-1][0]}</li>
+                                                <li class = "datos azul" >${farmacias[deTurno[dia]-1][1]}</li>
+                                                <li class = "datos azul" >TEL: ${farmacias[deTurno[dia]-1][2]}</li>
+                                            </ul>
+                                        </td>`;
+                }
                 dia++;
             }
         }
+    }
+    makeFunctional();
+}
+
+function makeFunctional(){
+    for(let i = 1;i<numbDays();i++){
+        dias[i] = document.getElementById("dia"+i.toString());
+        dias[i].addEventListener('click',()=>changeTurno(i));
     }
 }
 
