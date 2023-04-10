@@ -1,0 +1,111 @@
+/* Config del inicio*/
+header{
+    background-color:  rgba(13, 56, 148, 0.267);
+    outline: 0.5em #0d389483 solid ;
+    width: 100%;
+    padding-block: 2.5em;
+    margin: 0;
+    margin-bottom: 2em;
+}
+#inicio{
+    font-size: 3em;
+    text-align: center;
+    text-shadow: 0.2em 0.2em 0.3em #0D3894;
+} 
+
+/* Configuracion de la tabla */
+#tabla{
+    outline: 0.5em #0d389483 solid ;
+    table-layout:auto;
+    border-collapse:collapse;
+    width: 100%;
+    background-color: rgba(0,0,0,0 );
+    background-image: url("Isologofarmacia.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+tbody tr:nth-child(odd){
+    background-color: rgba(112, 112, 114, 0.329);
+}
+/*Config de las celdas*/
+#turnos_txt{
+    padding: 10px 15px;
+    text-align: right;
+    font-size: 1.5em;
+}
+#año{
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out ;
+    text-align: left;
+    font-size: 1.5em;
+
+}
+#mes{
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out ;
+    font-size: 1.5em;
+}
+.dia{
+    padding: 30px 6px;
+    outline: 0.1em #0D3894 solid;
+    text-align: center;
+    text-size-adjust: 100%;
+    font-size: 1.25;
+}
+.lista_dia{
+    margin: 0em 0em;
+    outline: 0.1em #0D3894 solid;
+    list-style-type: none;
+    padding: 30px 30px;
+    text-size-adjust: 1em;
+    transition: all 0.3s ease-in-out ;
+}
+.numero{
+    text-align: start;
+    font-size: 1em;
+}
+.dato{
+    text-align: center;
+    font-size: 1em;
+}
+
+/* Animacion */
+#mes:hover,#año:hover ,.lista_dia:hover{
+    background-color:rgba(13, 56, 148, 0.219);
+    box-shadow: 0.5em 0.5em 0.3em rgba(13, 56, 148, 0.651); ;
+    cursor:pointer;
+}
+
+/* Config del footer*/
+#footer p{
+    margin: 0;
+}
+#footer{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:  rgba(13, 56, 148, 0.267);
+    outline: 0.5em #0d389483 solid ;
+    width: 100%;
+    margin-top: 2em;
+    font-size: 0.8em;
+}
+#mail{
+    text-align: right;
+}
+
+#footer a:hover{
+    color: rgba(13, 56, 148, 0.651);;
+}
+
+/* Colores */
+.verde{
+    color : #108F34;  
+}
+.azul{
+    color : #0D3894;
+}
+
+/* Config global*/
+* {
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+}
