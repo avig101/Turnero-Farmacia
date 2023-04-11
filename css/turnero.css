@@ -1,7 +1,7 @@
 /* Config del inicio*/
 header{
     background-color:  rgba(13, 56, 148, 0.267);
-    outline: 0.5em #0d389483 solid ;
+    outline: 0.5em #0d3894a1 solid ;
     width: 100%;
     padding-block: 2.5em;
     margin: 0;
@@ -10,7 +10,7 @@ header{
 #inicio{
     font-size: 3em;
     text-align: center;
-    text-shadow: 0.2em 0.2em 0.3em #0D3894;
+    text-shadow: 0.2em 0.2em 0.3em #0d389471;
 } 
 
 /* Configuracion de la tabla */
@@ -38,15 +38,6 @@ tbody tr:nth-child(odd){
 #turnostxt{
     padding: 0.1em 0.4em;
     text-align: right;
-}
-#año{
-    padding: 0.1em 0.4em;
-    transition: all 0.3s ease-in-out ;
-    text-align: left;
-}
-#mes{
-    padding: 0.1em 0.4em;
-    transition: all 0.3s ease-in-out ;
 }
 .dia{
     padding: 0.5em 0.4em;
@@ -128,4 +119,22 @@ tbody tr:nth-child(odd){
 * {
     font-family: 'Orbitron', sans-serif;
 }
+.dropdown{
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    -ms-progress-appearance: none;
+    appearance: none;
+    outline: 0;
+    border:0;
+    margin: 0;
+    font-size: 1.5em;
+    transition: all 0.3s ease-in-out ;
+    width:100%;
 
+}
+.dropdown#año{
+    text-align: left;
+}
+.dropdown#mes{
+    text-align: center;
+}

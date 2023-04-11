@@ -70,7 +70,13 @@ class dia{
         this.#ref = referencia;
     }
 }
+
+//Lugares donde se guardaran las referencias
+//Botones
 let dias = [];
+let mes,año,mesQuery,añoQuery;
+// Partes del documento
+let topCalendar;
 
 
 
@@ -85,36 +91,38 @@ let week = [document.getElementById("week1"),document.getElementById("week2"),do
 let numWeeks = week.length;
 
 // Se inicializan los botones
-let mes = document.getElementById("mes");
-let año = document.getElementById("año");
 let print = document.getElementById("print");
-mes.addEventListener('click',()=>changeMonth());
-año.addEventListener('click',()=>changeYear());
 print.addEventListener(`click`,()=>window.print());
 
 // Se inicializa el turnero
-setYear(currentYear);
-setMonth(currentMonth);
 makeObjs();
 makeTurnero();
-pruebas();
+makeTop();
+makeFunctional();
+//pruebas();
 
 
 // Funciones
-function setMonth(month){
-    currentMonth = month;
-    mes.textContent = meses[month];
-}
 
+
+// Años
 function setYear(year){
     currentYear = year;
-    año.textContent =year.toString();
+    makeTurnero();
+    makeFunctional();
 }
-
 function isLeap(){
     return ((currentYear % 4 === 0 ));
 }
 
+// Meses
+function setMonth(month){
+    currentMonth = month
+    makeTurnero();
+    makeFunctional();
+}
+
+//Dias
 function startDay(){
     let start = new Date(currentYear,currentMonth,1);
     return start.getDay();
@@ -130,19 +138,7 @@ function numDays(){
     }else return 30;
 }
 
-function changeMonth(){
-    if(currentMonth !== 11){
-        setMonth(currentMonth+1);
-    }else setMonth(0);
-    makeTurnero();
-}
-function changeYear(){
-    if(currentYear !== 2030){
-        setYear(currentYear+1);
-    }else setYear(2020);
-    makeTurnero();
-}
-
+// Objetos
 function makeObjs(){
     farmacias_class[0] = new farmacia(farmacias[0][0],farmacias[0][1],farmacias[0][2]);
     for(let i=1;i<=31;i++){
@@ -153,25 +149,13 @@ function makeObjs(){
     }
 
 }
-
+// Funcionalidades
 function makeFunctional(){
     for(let i = 1;i<=numDays();i++){
         dias[i].setRef(document.getElementById("dia"+(i.toString())));
         dias[i].getRef().addEventListener('click',()=>changeTurno(i));
     }
 }
-
-
-function changeTurno(day){
-    if(dias[day].getTurno() === (numFarmacias)){
-        dias[day].setTurno(0);
-    }else {
-        dias[day].setTurno((dias[day].getTurno())+1);
-        console.log(dias[day].getTurno());
-    }
-    makeTurnero();
-}
-
 function makeTurnero(){
     let daytowrite = startDay();
     let day = 1;
@@ -181,7 +165,6 @@ function makeTurnero(){
             if((i===0 && j<daytowrite) || (day>numDays())){
                 week[i].innerHTML += `<td></td>`;
             }else{
-                console.log(dias[day].getTurno());
                 if(dias[day].getTurno() === 0){
                     week[i].innerHTML += `<td>
                                             <ul id = "dia${dias[day].getNum()}" class = "lista_dia select">
@@ -205,20 +188,66 @@ function makeTurnero(){
             }
         }
     }
+}
+function makeTop(){
+    topCalendar = document.getElementById("topCalendar");
+    topCalendar.innerHTML = ` `;
+    topCalendar.innerHTML +=    `<th></th> 
+                        <th></th>
+                        <th id = "turnostxt" class=" topCalendar">TURNOS</th>
+                        <th id = "mes_cont">
+                            <select id = "mes" class = "dropdown select verde"></select>
+                        </th>
+                        <th id = "año_cont">
+                            <select id = "año" class = "dropdown select verde"></select>
+                        </th>
+                        <th></th>
+                        <th></th>`;
+    mes = document.getElementById("mes");
+    año = document.getElementById("año");
+    mes.innerHTML = ` `;
+    año.innerHTML = ` `;
+    for(let i = 0;i<12;i++){
+        if(i === currentMonth){
+            mes.innerHTML += `  <option value ="${i}" selected = "selected">${meses[currentMonth]}</option> `;
+        }else {
+            mes.innerHTML += `  <option value ="${i}" id = "hidden${meses[i]}">${meses[i]}</option> `;
+        }
+    }                
+    for(let i = currentDate.getFullYear();i<(currentDate.getFullYear() + 12);i++){
+        if(i === currentYear){
+            año.innerHTML +=`<option value = "${i}" selected = "selected">${i}</option> `;
+        }else {
+            año.innerHTML +=`<option value = "${i}" id = "hidden${i}">${i}</option> `;
+        }
+    }  
+    mesQuery = document.querySelector("#mes")
+    mesQuery.addEventListener(`change`, ()=> setMonth(mesQuery.value));
+    añoQuery = document.querySelector("#año")
+    añoQuery.addEventListener(`change`, ()=> setYear(añoQuery.value));
+    
+
+}
+function changeTurno(day){
+    if(dias[day].getTurno() === (numFarmacias)){
+        dias[day].setTurno(0);
+    }else {
+        dias[day].setTurno((dias[day].getTurno())+1);
+    }
+    makeTurnero();
     makeFunctional();
 }
+// Prueba
 function pruebas(){
     for(let i = 1;i<numDays();i++){
         dias[i].setTurno(getRandomInt(0,numFarmacias +1))
         makeTurnero();
     }
 }
-
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 }
-
 
 
