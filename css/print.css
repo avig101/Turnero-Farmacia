@@ -1,0 +1,19 @@
+@media print{
+    body::before,
+    body::after,
+    head,
+    header,
+    #printer,
+    #footer{
+        display: none;
+        border : none;
+        width: 100%;
+        padding : 0;
+        margin : 0;
+    }
+
+}
+#calendario{
+    width:100%
+
+}
