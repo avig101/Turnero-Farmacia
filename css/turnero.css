@@ -1,7 +1,7 @@
 /* Config del inicio*/
 header{
     background-color:  rgba(13, 56, 148, 0.267);
-    outline: 0.5em #0d389483 solid ;
+    outline: 0.5em #0d3894a1 solid ;
     width: 100%;
     padding-block: 2.5em;
     margin: 0;
@@ -10,7 +10,7 @@ header{
 #inicio{
     font-size: 3em;
     text-align: center;
-    text-shadow: 0.2em 0.2em 0.3em #0D3894;
+    text-shadow: 0.2em 0.2em 0.3em #0d389471;
 } 
 
 /* Configuracion de la tabla */
@@ -39,45 +39,38 @@ tbody tr:nth-child(odd){
     padding: 0.1em 0.4em;
     text-align: right;
 }
-#año{
-    padding: 0.1em 0.4em;
-    transition: all 0.3s ease-in-out ;
-    text-align: left;
-}
-#mes{
-    padding: 0.1em 0.4em;
-    transition: all 0.3s ease-in-out ;
-}
 .dia{
     padding: 0.5em 0.4em;
     outline: 0.065em rgba(13, 56, 148, 0.616) solid;
     text-align: center;
     font-size: 1.4em;
 }
+
+.casillas{
+    outline: 0.01em rgba(13, 56, 148, 0.404) solid;
+    text-align: center;
+    height:max-content;
+
+}
 .lista_dia{
-    margin: 0em 0em;
-    border-width: 0.001em;
-    outline: 0.1em rgba(13, 56, 148, 0.616) solid;
     list-style-type: none;
-    padding: 1em;
+    margin: 0;
+    border: 1em;
+    padding: 0.5em;
     transition: all 0.3s ease-in-out ;
 }
 .numeros{
     padding-bottom: 1em;
     text-align: start;
-    font-size: 0.8em;
+    font-size: 1em;
 }
-.nombres{
+.nombre{
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 .datos{
     text-align: center;
-    font-size: 0.8em;
-}
-.empty{
-    text-align: center;
-    font-size: 0.89999em;
+    font-size: 1em;
 }
 
 /* Animacion */
@@ -86,13 +79,20 @@ tbody tr:nth-child(odd){
     box-shadow: 0.5em 0.5em 0.3em rgba(13, 56, 148, 0.651); ;
     cursor:pointer;
 }
+
 /* Impresora*/
 #printer{
+
     text-align: center;
-    padding: 2em;
+    padding: 3em;
 }
 #print{
+    background-color:  rgba(13, 56, 148, 0.267);
+    outline: 0.5em #0d389483 solid ;
+    border: 0;
+    font-size: 1.25em;
     transition: all 0.3s ease-in-out ;
+    padding: 1em;
 }
 
 /* Config del footer*/
@@ -105,7 +105,6 @@ tbody tr:nth-child(odd){
     background-color:  rgba(13, 56, 148, 0.267);
     outline: 0.5em #0d389483 solid ;
     width: 100%;
-    margin-top: 1em;
     font-size: 0.8em;
 }
 #mail{
@@ -128,4 +127,50 @@ tbody tr:nth-child(odd){
 * {
     font-family: 'Orbitron', sans-serif;
 }
+.dropdownTop{
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    -ms-progress-appearance: none;
+    appearance: none;
+    outline: 0;
+    border:0;
+    margin: 0;
+    font-size: 1.5em;
+    transition: all 0.3s ease-in-out ;
+    width:100%;
+}
+.dropdownTop#año{
+    text-align: left;
+}
+.dropdownTop#mes{
+    text-align: center;
+}                                     
 
+.dropdownDays{
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    -ms-progress-appearance: none;
+    appearance: none;
+    background-color: #ffffff00;
+    border: 0;
+    margin: 0;
+    padding: 1em;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+    text-overflow:clip;
+    font-size: 1em;
+    transition: all 0.3s ease-in-out ;
+    color : #108F34;  
+}
+.opt{
+    padding: 2em;
+    text-align: center;
+}
+/* Colores */
+.verde{
+    color : #108F34;  
+}
+.azul{
+    color : #0D3894;
+}
