@@ -7,9 +7,9 @@
     - Agregar funcionalidades con JS
 2. WEB "avanzado"
     - Generar una imagen que se descargue ***(estamos aca)***
+    - Mejorar usabilidad de la interfaz con ventanas de seleccion
     - Programar Responsive
     - Programar con React
 3. Backend ***(a determinar)***
 
 
-##### ya que estas aca te dejo mi [IG](https://www.instagram.com/?hl=es-la)
