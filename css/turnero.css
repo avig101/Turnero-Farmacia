@@ -1,7 +1,7 @@
 /* Config del inicio*/
 header{
     background-color:  rgba(13, 56, 148, 0.267);
-    outline: 0.5em #0d3894a1 solid ;
+    outline: 0.5em rgba(13, 56, 148, 0.514) solid ;
     width: 100%;
     padding-block: 2.5em;
     margin: 0;
@@ -10,12 +10,12 @@ header{
 #inicio{
     font-size: 3em;
     text-align: center;
-    text-shadow: 0.2em 0.2em 0.3em #0d389471;
+    text-shadow: 0.2em 0.2em 0.3em rgba(13, 56, 148, 0.443);
 } 
 
 /* Configuracion de la tabla */
 #calendario{
-    outline: 0.5em #0d389483 solid ;
+    outline: 0.5em rgba(13, 56, 148, 0.514) solid ;
     table-layout:fixed;
     border-collapse:collapse;
     width: 100%;
@@ -34,21 +34,17 @@ tbody tr:nth-child(odd){
 /*Config de las celdas*/
 .dia{
     padding: 0.5em 0.4em;
-    outline: 0.065em rgba(13, 56, 148, 0.616) solid;
+    border: 0.08em rgba(13, 56, 148, 0.616) solid;
     text-align: center;
     font-size: 1.4em;
 }
 
 .casillas{
-    outline: 0.01em rgba(13, 56, 148, 0.404) solid;
-    text-align: center;
-    height:max-content;
-
+    border: 0.08em rgba(13, 56, 148, 0.404) solid;
 }
 .lista_dia{
     list-style-type: none;
     margin: 0;
-    border: 1em;
     padding: 0.5em;
     transition: all 0.3s ease-in-out ;
 }
@@ -59,12 +55,13 @@ tbody tr:nth-child(odd){
 }
 .nombre{
     text-align: center;
-    font-size: 1.5em;
+    text-overflow: clip;
+    font-size: 1.15em;
 }
 .datos{
     text-align: center;
-    font-size: 1em;
-}
+    font-size: 1.1em;
+} 
 
 .dropdownTop{
     -webkit-appearance:none;
@@ -113,7 +110,7 @@ tbody tr:nth-child(odd){
 /* Animacion */
 .select:hover{
     background-color:rgba(13, 56, 148, 0.219);
-    box-shadow: 0.5em 0.5em 0.3em rgba(13, 56, 148, 0.651); ;
+    box-shadow: 0.5em 0.5em 0.3em rgba(13, 56, 148, 0.443); ;
     cursor:pointer;
 }
 
@@ -158,8 +155,8 @@ tbody tr:nth-child(odd){
 }
 /* Colores */
 .verde{
-    color : #108F34;  
+    color : rgb(16, 143, 52);  
 }
 .azul{
-    color : #0D3894;
+    color : rgb(13, 56, 148);
 }

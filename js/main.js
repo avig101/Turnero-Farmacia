@@ -239,7 +239,7 @@ function makeDayList(i){
     dias[i].setRef(document.getElementById("dia"+(i.toString())));
     dias[i].getRef().innerHTML = ` <option value = "0">Seleccione</option>`;
     for(let k=0;k<numFarmacias;k++){
-            dias[i].getRef().innerHTML += `  <option value = "${k+1}" class = "opt">${farmacias_class[k].getName()}</option>`;                        
+            dias[i].getRef().innerHTML += `  <option value = "${k+1}" class = "dropDownDays">${farmacias_class[k].getName()}</option>`;                        
     }
     dias[i].setQuery(document.querySelector("#dia"+(i.toString())));
     dias[i].getQuery().addEventListener("change",()=>changeTurno(i));
