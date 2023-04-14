@@ -32,13 +32,6 @@ tbody tr:nth-child(odd){
     background-color: rgba(112, 112, 114, 0.329);
 }
 /*Config de las celdas*/
-.topCalendar{
-    font-size: 1.5em;
-}
-#turnostxt{
-    padding: 0.1em 0.4em;
-    text-align: right;
-}
 .dia{
     padding: 0.5em 0.4em;
     outline: 0.065em rgba(13, 56, 148, 0.616) solid;
@@ -73,6 +66,50 @@ tbody tr:nth-child(odd){
     font-size: 1em;
 }
 
+.dropdownTop{
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    -ms-progress-appearance: none;
+    appearance: none;
+    outline: 0;
+    border:0;
+    margin: 0;
+    transition: all 0.3s ease-in-out ;
+    width:100%;
+}
+#turnostxt{
+    font-size: 1.7em;
+    padding: 0.1em 0.4em;
+    text-align: right;
+}
+#año{
+    font-size: 1.7em;
+    padding: 0.1em 0.4em;
+    text-align: left;
+}
+#mes{
+    font-size: 1.7em;
+    padding: 0.1em 0.4em;
+    text-align: center;
+}                                     
+
+.dropdownDays{
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    -ms-progress-appearance: none;
+    appearance: none;
+    background-color: #ffffff00;
+    border: 0;
+    margin: 0;
+    padding: 1em;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+    text-overflow:clip;
+    font-size: 1em;
+    transition: all 0.3s ease-in-out ;
+    color : #108F34;  
+}
 /* Animacion */
 .select:hover{
     background-color:rgba(13, 56, 148, 0.219);
@@ -115,57 +152,9 @@ tbody tr:nth-child(odd){
     color: rgba(13, 56, 148, 0.651);;
 }
 
-/* Colores */
-.verde{
-    color : #108F34;  
-}
-.azul{
-    color : #0D3894;
-}
-
 /* Config global*/
 * {
     font-family: 'Orbitron', sans-serif;
-}
-.dropdownTop{
-    -webkit-appearance:none;
-    -moz-appearance: none;
-    -ms-progress-appearance: none;
-    appearance: none;
-    outline: 0;
-    border:0;
-    margin: 0;
-    font-size: 1.7em;
-    transition: all 0.3s ease-in-out ;
-    width:100%;
-}
-#año_cont{
-    text-align: left;
-}
-#mes_cont{
-    text-align: center;
-}                                     
-
-.dropdownDays{
-    -webkit-appearance:none;
-    -moz-appearance: none;
-    -ms-progress-appearance: none;
-    appearance: none;
-    background-color: #ffffff00;
-    border: 0;
-    margin: 0;
-    padding: 1em;
-    width: 100%;
-    height: fit-content;
-    text-align: center;
-    text-overflow:clip;
-    font-size: 1em;
-    transition: all 0.3s ease-in-out ;
-    color : #108F34;  
-}
-.opt{
-    padding: 2em;
-    text-align: center;
 }
 /* Colores */
 .verde{
