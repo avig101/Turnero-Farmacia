@@ -45,10 +45,10 @@ let farmacias_class = [];
 //Se crea la clase dia
 class dia{
     #nro;
-    #deTurno = 0;
     #ref;
     #query
-    #week
+    #deTurno
+    #info
     constructor(numero){
         this.#nro = numero;
         this.#deTurno = 0;
@@ -56,26 +56,32 @@ class dia{
     getNum(){
         return this.#nro;
     }
-    getTurno(){
-        return this.#deTurno;
-    }
     getRef(){
         return this.#ref;
     }
     getQuery(){
         return this.#query;
     }
+    getInfo(){
+        return this.#info;
+    }
+    getTurno(){
+        return this.#deTurno;
+    }
     setNum(numero){
         this.#nro = numero;
-    }
-    setTurno(farmacia){
-        this.#deTurno = farmacia;
     }
     setRef(referencia){
         this.#ref = referencia;
     }
     setQuery(query){
         this.#query = query
+    }
+    setInfo(info){
+        this.#info = info;
+    }
+    setTurno(Turno){
+        this.#deTurno = Turno;
     }
 }
 
@@ -154,9 +160,11 @@ function makeObjs(){
     }
 
 }
-// Funcionalidades
+// Visualizacion del turnero
+
+// Funcion que genera la parte superior del turnero
 function makeTop(){
-    topCalendar = document.getElementById("topCalendar");
+    topCalendar = document.getElementById("turnosMesAño");
     topCalendar.innerHTML = ` `;
     topCalendar.innerHTML +=    `   <th></th> 
                                     <th></th>
@@ -169,32 +177,10 @@ function makeTop(){
                                     </th>
                                     <th></th>
                                     <th></th>`;
-
-    mes = document.getElementById("mes");
-    año = document.getElementById("año");
-    mes.innerHTML = ` `;
-    año.innerHTML = ` `;
-    for(let i = 0;i<12;i++){
-        if(i === currentMonth){
-            mes.innerHTML += `  <option value ="${i}" selected = "selected" class = "opt">${meses[currentMonth]}</option> `;
-        }else {
-            mes.innerHTML += `  <option value ="${i}" id = "hidden${meses[i]}" class = "opt">${meses[i]}</option> `;
-        }
-    }                
-    for(let i = currentDate.getFullYear();i<(currentDate.getFullYear() + 12);i++){
-        if(i === currentYear){
-            año.innerHTML +=`<option value = "${i}" selected = "selected" class = "opt">${i}</option> `;
-        }else {
-            año.innerHTML +=`<option value = "${i}" id = "hidden${i}" class = "opt">${i}</option> `;
-        }
-    }  
-    mesQuery = document.querySelector("#mes")
-    mesQuery.addEventListener(`change`, ()=> setMonth(mesQuery.value));
-    añoQuery = document.querySelector("#año")
-    añoQuery.addEventListener(`change`, ()=> setYear(añoQuery.value));
-    
-
+    makeMonthsList();
+    makeYearsList();
 }
+// Funcion que formatea el calendario
 function makeTurnero(){
     let daytowrite = startDay();
     let day = 1;
@@ -205,51 +191,95 @@ function makeTurnero(){
                 week[i].innerHTML += `<td></td>`;
             }else{
                 week[i].innerHTML += `  <td id = "head${dias[day].getNum()}" class ="casillas">
-                                            <ul class ="lista_dia ">
-                                                <li class = "numeros azul">${dias[day].getNum()}</li>
-                                                <li class = "nombre verde"><br></li>
-                                                <li class = "datos azul"><br></li>
-                                                <li class = "datos azul"><br></li>
-                                            </ul>
                                             <select id = "dia${dias[day].getNum()}" class = "dropdownDays select hidden"><select>
                                         </td>`;
+                makeDayList(day); 
+                dias[day].getQuery().value = dias[day].getTurno();                       
+                changeTurno(day);
                 day++;
             }
         }
     }
-    makeDaysRef();
 }
-function makeDaysRef(){
-    for(let i = 1;i<=numDays();i++){
-        dias[i].setRef(document.getElementById("dia"+(i.toString())));
-        dias[i].getRef().innerHTML = ` <option value = "0">Seleccione</option>`;
-        for(let k=0;k<numFarmacias;k++){
-            dias[i].getRef().innerHTML += `  <option value = "${k+1}" class = "opt">${farmacias_class[k].getName()}</option>`;                        
-        }
-        dias[i].setQuery(document.querySelector("#dia"+(i.toString())))
-        dias[i].getQuery().addEventListener("change",()=>changeDay(i));
-    }
-}
-function changeDay(i){
-    let farm = dias[i].getQuery().value -1;
-    if (farm < 0) return;
+
+// Funcion que cambia el turno de un dia
+function changeTurno(i){
+    let farm = dias[i].getQuery().value;
+    dias[i].setTurno(farm);
     let head = document.getElementById("head" +i.toString());
-    head.innerHTML = `  <ul class = "lista_dia" >
+    let temp;
+    farm--;
+    if (farm < 0){
+        temp=`      <ul class ="lista_dia ">
+                        <li class = "numeros azul">${dias[i].getNum()}</li>
+                        <li class = "nombre verde"><br></li>
+                        <li class = "datos azul"><br></li>
+                        <li class = "datos azul"><br></li>
+                    </ul>
+                    <select id = "dia${dias[i].getNum()}" class = "dropdownDays select hidden"><select>`
+    }
+    else{
+        temp = `    <ul class = "lista_dia" >
                             <li class = "numeros azul">${dias[i].getNum()}</li>
                             <li class = "nombre verde">${farmacias_class[farm].getName()}</li>
                             <li class = "datos azul">${farmacias_class[farm].getDir()}</li> 
                             <li class = "datos azul">TEL: ${farmacias_class[farm].getTel()}</li> 
                         </ul>
                         <select id = "dia${dias[i].getNum()}" class = "dropdownDays select hidden"><select>`;
-    makeDaysRef();
+    }
+    dias[i].setInfo(temp);
+    head.innerHTML = temp;
+    makeDayList(i);
+    dias[i].getQuery().value = 0;
 
 }
+
+// Funciones que crean las listas de seleccion;
+function makeDayList(i){
+    dias[i].setRef(document.getElementById("dia"+(i.toString())));
+    dias[i].getRef().innerHTML = ` <option value = "0">Seleccione</option>`;
+    for(let k=0;k<numFarmacias;k++){
+            dias[i].getRef().innerHTML += `  <option value = "${k+1}" class = "dropDownDays">${farmacias_class[k].getName()}</option>`;                        
+    }
+    dias[i].setQuery(document.querySelector("#dia"+(i.toString())));
+    dias[i].getQuery().addEventListener("change",()=>changeTurno(i));
+}
+function makeMonthsList(){
+    mes = document.getElementById("mes");
+    mes.innerHTML = ` `;
+    for(let i = 0;i<12;i++){
+        if(i === currentMonth){
+            mes.innerHTML += `  <option value ="${i}" selected = "selected" class = "optM">${meses[currentMonth]}</option> `;
+        }else {
+            mes.innerHTML += `  <option value ="${i}" id = "hidden${meses[i]}" class = "optM">${meses[i]}</option> `;
+        }
+    }
+    mesQuery = document.querySelector("#mes");
+    mesQuery.addEventListener(`change`, ()=> setMonth(mesQuery.value));  
+}
+function makeYearsList(){
+    año = document.getElementById("año");
+    año.innerHTML = ` `;
+              
+    for(let i = currentDate.getFullYear();i<(currentDate.getFullYear() + 12);i++){
+        if(i === currentYear){
+            año.innerHTML +=`<option value = "${i}" selected = "selected" class = "optY">${i}</option> `;
+        }else {
+            año.innerHTML +=`<option value = "${i}" id = "hidden${i}" class = "optY">${i}</option> `;
+        }
+    }  
+    añoQuery = document.querySelector("#año");
+    añoQuery.addEventListener(`change`, ()=> setYear(añoQuery.value));
+
+}
+
+
 
 // Prueba
 function pruebas(){
     for(let i = 1;i<=numDays();i++){
         dias[i].getQuery().value = getRandomInt(1,numFarmacias);
-        changeDay(i);
+        changeTurno(i);
         
     }
 }
